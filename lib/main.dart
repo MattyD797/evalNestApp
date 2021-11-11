@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: MyHomePage(),
     );
@@ -29,26 +30,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
 
-      ),
-      body: FlutterMap(
-        options: MapOptions(
-          center: latLng.LatLng(51.5, -0.09),
-          zoom: 13.0,
         ),
-        layers: [
-          TileLayerOptions(
-            urlTemplate: "https://api.mapbox.com/styles/v1/mtduggan/ckukb9uuk6wcz18p9dxyqd1ps/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibXRkdWdnYW4iLCJhIjoiY2t1a2I4MTV5MWE2MzJ3b2YycGl0djRnZyJ9.Sx7oMnrNlA1yWBO42iSAOQ",
-            additionalOptions: {
-              'accessToken' : 'pk.eyJ1IjoibXRkdWdnYW4iLCJhIjoiY2t1a2I4MTV5MWE2MzJ3b2YycGl0djRnZyJ9.Sx7oMnrNlA1yWBO42iSAOQ',
-              'id' : 'mapbox.satellite',
-
-            }
+        body: _flutterMap(context)
+    );
+  }
+    Widget _flutterMap(BuildContext context){
+      return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: FlutterMap(
+          options: MapOptions(
+            center: latLng.LatLng(52.1326, 5.2913),
+            zoom: 13.0,
           ),
-          /*MarkerLayerOptions(
+          layers: [
+            TileLayerOptions(
+                urlTemplate: "https://api.mapbox.com/styles/v1/mtduggan/ckukb9uuk6wcz18p9dxyqd1ps/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibXRkdWdnYW4iLCJhIjoiY2t1a2I4MTV5MWE2MzJ3b2YycGl0djRnZyJ9.Sx7oMnrNlA1yWBO42iSAOQ",
+                additionalOptions: {
+                  'accessToken' : 'pk.eyJ1IjoibXRkdWdnYW4iLCJhIjoiY2t1a2I4MTV5MWE2MzJ3b2YycGl0djRnZyJ9.Sx7oMnrNlA1yWBO42iSAOQ',
+                  'id' : 'mapbox.satellite',
+
+                }
+            ),
+            /*MarkerLayerOptions(
             markers: [
               Marker(
                 width: 80.0,
@@ -61,8 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),*/
-        ],
-      ),
-    );
+          ],
+        ),
+      );
   }
 }
